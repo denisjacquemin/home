@@ -1,0 +1,39 @@
+<h1>Listing properties</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Ref</th>
+      <th>Price</th>
+      <th>Old price</th>
+      <th>Description</th>
+      <th>Address</th>
+      <th>Agence</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @properties.each do |property| %>
+      <tr>
+        <td><%= property.title %></td>
+        <td><%= property.ref %></td>
+        <td><%= property.price %></td>
+        <td><%= property.old_price %></td>
+        <td><%= property.description %></td>
+        <td><%= property.address %></td>
+        <td><%= property.agence_id %></td>
+        <td><%= link_to 'Show', property %></td>
+        <td><%= link_to 'Edit', edit_property_path(property) %></td>
+        <td><%= link_to 'Destroy', property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Property', new_property_path %>
