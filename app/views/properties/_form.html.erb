@@ -40,7 +40,9 @@
     <%= f.number_field :agence_id %>
   </div>
   <div class="fallback">
-    <%= f.file_field :image %>
+    <% f.fields_for :image do |image_builder| %>
+        <%= image_builder.file_field :file %>
+    <% end %>
   </div>
   <div class="dropzone">
     <b>Drag and Drop an Image File here.</b>
@@ -48,9 +50,6 @@
     &nbsp;<br/>
     &nbsp;
   </div>
-  <% unless @property.image.nil? %>
-        <%= image_tag @property.image.url %>
-  <% end %>
   <div class="actions">
     <%= f.submit id: 'property_submit' %>
   </div>
