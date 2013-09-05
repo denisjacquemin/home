@@ -34,6 +34,10 @@ end
 
 gem 'devise'
 
+gem 'carrierwave'
+gem 'rmagick'
+gem 'dropzonejs-rails'
+
 #gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
 
 # Use ActiveModel has_secure_password
