@@ -39,7 +39,19 @@
     <%= f.label :agence_id %><br>
     <%= f.number_field :agence_id %>
   </div>
+  <div class="fallback">
+    <%= f.file_field :image %>
+  </div>
+  <div class="dropzone">
+    <b>Drag and Drop an Image File here.</b>
+    &nbsp;<br/>
+    &nbsp;<br/>
+    &nbsp;
+  </div>
+  <% unless @property.image.nil? %>
+        <%= image_tag @property.image.url %>
+  <% end %>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit id: 'property_submit' %>
   </div>
 <% end %>
