@@ -43,6 +43,7 @@ class PropertiesController < ApplicationController
   # PATCH/PUT /properties/1.json
   def update
     respond_to do |format|
+      puts property_params.inspect
       if @property.update(property_params)
         format.html { redirect_to @property, notice: 'Property was successfully updated.' }
         format.json { head :no_content }
@@ -71,6 +72,6 @@ class PropertiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def property_params
-      params.require(:property).permit(:title, :ref, :price, :old_price, :description, :address, :agence_id, :image)
+      params.require(:property).permit(:title, :ref, :price, :old_price, :description, :address, :agence_id, images_attributes: [:file])
     end
 end

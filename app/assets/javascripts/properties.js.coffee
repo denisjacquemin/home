@@ -4,14 +4,14 @@
 
 jQuery ->
 
-  form_id = '.edit_property'
+  form_id = '#edit_property_upload'
   submit_button_id = '#property_submit'
   notice_id = '.notice'
   alert_id = '.alert'
 
   if $(form_id).length > 0
     property_form = new Dropzone(form_id, {
-      paramName: "property[image]"
+      paramName: "property[images_attributes][file]"
       enqueueForUpload: false
       previewsContainer: '.dropzone'
     })

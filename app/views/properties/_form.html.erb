@@ -39,18 +39,22 @@
     <%= f.label :agence_id %><br>
     <%= f.number_field :agence_id %>
   </div>
-  <div class="fallback">
-    <% f.fields_for :image do |image_builder| %>
-        <%= image_builder.file_field :file %>
-    <% end %>
-  </div>
-  <div class="dropzone">
-    <b>Drag and Drop an Image File here.</b>
-    &nbsp;<br/>
-    &nbsp;<br/>
-    &nbsp;
-  </div>
+
   <div class="actions">
     <%= f.submit id: 'property_submit' %>
   </div>
+<% end %>
+
+<%= form_for(@property, html: {id: 'edit_property_upload'}) do |f| %>
+    <div class="fallback">
+      <% f.fields_for :image do |image_builder| %>
+          <%= image_builder.file_field :file %>
+      <% end %>
+    </div>
+    <div class="dropzone">
+      <b>Drag and Drop an Image File here.</b>
+      &nbsp;<br/>
+      &nbsp;<br/>
+      &nbsp;
+    </div>
 <% end %>
