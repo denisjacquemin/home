@@ -49,21 +49,25 @@
     <%= f.submit id: 'property_submit' %>
   </div>
 <% end %>
+<%
+    # only display in edit mode
+    unless @property.new_record?
+%>
+    <%= form_for(@property, html: {id: 'edit_property_upload'}) do |f| %>
+        <div class="fallback">
+          <% f.fields_for :image do |image_builder| %>
+              <%= image_builder.file_field :file %>
+          <% end %>
+        </div>
+        <div class="dropzone">
+          <b>Drag and Drop an Image File here.</b>
+          &nbsp;<br/>
+          &nbsp;<br/>
+          &nbsp;
+        </div>
+    <% end %>
 
-<%= form_for(@property, html: {id: 'edit_property_upload'}) do |f| %>
-    <div class="fallback">
-      <% f.fields_for :image do |image_builder| %>
-          <%= image_builder.file_field :file %>
-      <% end %>
-    </div>
-    <div class="dropzone">
-      <b>Drag and Drop an Image File here.</b>
-      &nbsp;<br/>
-      &nbsp;<br/>
-      &nbsp;
-    </div>
-<% end %>
-
-<% @property.images.each do |image| %>
-    <%= image_tag image.file.url %>
+    <% @property.images.each do |image| %>
+        <%= image_tag image.file.url %>
+    <% end %>
 <% end %>
