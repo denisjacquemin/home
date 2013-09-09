@@ -1,4 +1,6 @@
 Home::Application.routes.draw do
+  resources :agencies
+
   devise_for :users
   resources :properties
 
