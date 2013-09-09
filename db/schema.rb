@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20130905103332) do
     t.string   "title"
     t.string   "description"
     t.string   "file"
+    t.integer  "property_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

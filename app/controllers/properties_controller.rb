@@ -43,8 +43,17 @@ class PropertiesController < ApplicationController
   # PATCH/PUT /properties/1.json
   def update
     respond_to do |format|
-      puts property_params.inspect
-      if @property.update(property_params)
+
+      property_params_clone = property_params
+      images = property_params_clone.delete('images_attributes') || {}
+
+      images.each do |file|
+        image = Image.new(property_id: @property.id)
+        image.file = file[1]
+        image.save
+      end
+
+      if property_params_clone.empty? or @property.update(property_params_clone)
         format.html { redirect_to @property, notice: 'Property was successfully updated.' }
         format.json { head :no_content }
       else
@@ -72,6 +81,6 @@ class PropertiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def property_params
-      params.require(:property).permit(:title, :ref, :price, :old_price, :description, :address, :agence_id, images_attributes: [:file])
+      params.require(:property).permit(:title, :ref, :price, :old_price, :description, :address, :agence_id, images_attributes: :file)
     end
 end
